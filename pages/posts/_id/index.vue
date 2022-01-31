@@ -1,12 +1,14 @@
 <template>
   <div class="single-post-page">
     <section class="post">
-      <h1 class="port-title">Title of the post</h1>
+      <h1 class="port-title">{{ loadedPost.title }}</h1>
       <div class="post-details">
-        <div class="post-detail">Last updated on XXX</div>
-        <div class="post-detail">Written by</div>
+        <div class="post-detail">
+          Last updated on {{ loadedPost.updateDate }}
+        </div>
+        <div class="post-detail">{{ loadedPost.author }}</div>
       </div>
-      <p>Content of the post</p>
+      <p>{{ loadedPost.content }}</p>
     </section>
     <section class="post-feedback">
       <p class="post-content">
@@ -18,7 +20,24 @@
 </template>
 
 <script>
-export default {};
+export default {
+  asyncData(context, callback) {
+    setTimeout(() => {
+      callback(null, {
+        loadedPost: {
+          id: "1",
+          title: "first post (ID: " + context.route.params.id + ")",
+          thumbnail:
+            "https://piratepay.us/images/advportfoliopro/images/2_1522742601.jpg",
+          previewText: "some text",
+          author: "Max",
+          updateDate: new Date(),
+          content: "Some dummy text(not the preview)",
+        },
+      });
+    }, 1000);
+  },
+};
 </script>
 
 <style scoped>
