@@ -20,22 +20,21 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
-  asyncData(context, callback) {
-    setTimeout(() => {
-      callback(null, {
-        loadedPost: {
-          id: "1",
-          title: "first post (ID: " + context.route.params.id + ")",
-          thumbnail:
-            "https://piratepay.us/images/advportfoliopro/images/2_1522742601.jpg",
-          previewText: "some text",
-          author: "Max",
-          updateDate: new Date(),
-          content: "Some dummy text(not the preview)",
-        },
-      });
-    }, 1000);
+  asyncData(context) {
+    return axios
+      .get(
+        "https://vue-nuxt-blog-b995c-default-rtdb.firebaseio.com/posts/" +
+          context.params.id +
+          ".json"
+      )
+      .then((res) => {
+        return {
+          loadedPost: res.data,
+        };
+      })
+      .catch((e) => context.error(e));
   },
 };
 </script>
