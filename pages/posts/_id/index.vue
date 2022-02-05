@@ -4,7 +4,7 @@
       <h1 class="port-title">{{ loadedPost.title }}</h1>
       <div class="post-details">
         <div class="post-detail">
-          Last updated on {{ loadedPost.updateDate }}
+          Last updated on {{ loadedPost.updatedDate | date }}
         </div>
         <div class="post-detail">{{ loadedPost.author }}</div>
       </div>
@@ -23,15 +23,11 @@
 import axios from "axios";
 export default {
   asyncData(context) {
-    return axios
-      .get(
-        "https://vue-nuxt-blog-b995c-default-rtdb.firebaseio.com/posts/" +
-          context.params.id +
-          ".json"
-      )
-      .then((res) => {
+    return context.app.$axios
+      .$get("/posts/" + context.params.id + ".json")
+      .then((data) => {
         return {
-          loadedPost: res.data,
+          loadedPost: data,
         };
       })
       .catch((e) => context.error(e));

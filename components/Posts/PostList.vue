@@ -34,11 +34,25 @@ export default {
 
 <style>
 .post-list {
-  display: flex;
-  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  padding: 30px;
   box-sizing: border-box;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 30px;
+}
+
+@media (max-width: 1023px) {
+  .post-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 767px) {
+  .post-list {
+    grid-template-columns: repeat(1, 1fr);
+    padding: 20px;
+    grid-gap: 20px;
+  }
 }
 </style>

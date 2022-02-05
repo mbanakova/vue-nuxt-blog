@@ -51,7 +51,7 @@ export default {
   border: 1px solid #ccc;
   box-shadow: 0 2px 2px #ccc;
   background-color: white;
-  width: 90%;
+  /* width: 90%; */
 }
 
 a {
@@ -59,12 +59,12 @@ a {
   color: black;
 }
 
-@media (min-width: 850px) {
+/* @media (min-width: 850px) {
   .post-preview {
     width: 400px;
     margin: 10px;
   }
-}
+} */
 
 .post-thumbnail {
   width: 100%;
